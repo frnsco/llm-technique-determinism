@@ -9,6 +9,7 @@ from typing import List, Dict, Tuple
 
 from groq import Groq, RateLimitError
 
+# Change this to your Qwen model name when needed
 MODEL = "qwen/qwen3-32b"
 TEMPERATURE = 0.01
 
@@ -46,6 +47,32 @@ def is_tpd_error(err: Exception) -> bool:
     msg = str(err).lower()
     return ("tokens per day" in msg) or ("tpd" in msg)
 
+
+# ----------------------------
+# Qwen <think> cleaner
+# ----------------------------
+
+THINK_BLOCK_RE = re.compile(r"<think>.*?</think>", re.DOTALL | re.IGNORECASE)
+
+def strip_think_blocks(model_name: str, text: str) -> str:
+    """
+    If model name contains 'qwen', remove all <think>...</think> blocks.
+    Returns cleaned text.
+    """
+    if not text:
+        return ""
+    if "qwen" not in (model_name or "").lower():
+        return text.strip()
+
+    # Remove all think blocks
+    cleaned = THINK_BLOCK_RE.sub("", text)
+    # Also clean leftover whitespace
+    return cleaned.strip()
+
+
+# ----------------------------
+# IO helpers
+# ----------------------------
 
 def load_json(path: str):
     with open(path, "r", encoding="utf-8") as f:
@@ -92,7 +119,6 @@ def ensure_csv(csv_path: str):
 def append_row(csv_path: str, row: Dict[str, str]):
     """
     Always writes rows with the exact same schema.
-    Prevents the "missing outputs" issue from header drift.
     """
     ensure_csv(csv_path)
     normalized = {k: row.get(k, "") for k in FIELDNAMES}
@@ -169,8 +195,9 @@ def call_groq_debug(
 
     limiter.record(est)
 
-    output = (resp.choices[0].message.content or "").strip()
-    return output
+    raw = (resp.choices[0].message.content or "").strip()
+    cleaned = strip_think_blocks(MODEL, raw)
+    return cleaned
 
 
 # ----------------------------
@@ -184,7 +211,7 @@ def baseline_prompt(user_text: str, techniques_text: str) -> List[Dict[str, str]
         "Output ONLY the exact technique name from the list."
     )
     user = (
-        f'For this user: "{user_text}"\n\n'
+        f'For this user: \"{user_text}\"\n\n'
         "Suggest a technique from this list, just output the technique name:\n"
         f"{techniques_text}"
     )
@@ -224,7 +251,7 @@ def comparison_prompt(user_text: str, techniques_text: str, style: str) -> List[
         raise ValueError("Unknown style")
 
     user = (
-        f'For this user: "{user_text}"\n\n'
+        f'For this user: \"{user_text}\"\n\n'
         "Suggest a technique from this list:\n"
         f"{techniques_text}\n\n"
         f"{format_instr}"
@@ -349,6 +376,7 @@ def main():
                 baseline_out = call_groq_debug(
                     client, baseline_msgs, "BASELINE", limiter, max_tokens=BASELINE_MAX_TOKENS
                 )
+
                 print("BASELINE OUTPUT:")
                 print(baseline_out if baseline_out else "[EMPTY RESPONSE]")
 
@@ -361,7 +389,7 @@ def main():
                     "technique_picked": baseline_out,
                     "system_prompt": baseline_system,
                     "user_prompt": baseline_user,
-                    "raw_output": baseline_out,
+                    "raw_output": baseline_out,  # cleaned if Qwen
                     "raw_top5": "",
                     "dist": "[]"
                 })
@@ -378,6 +406,7 @@ def main():
                 sf_out = call_groq_debug(
                     client, sf_msgs, "SCORE_FIRST", limiter, max_tokens=DIST_MAX_TOKENS
                 )
+
                 print("\nSCORE_FIRST OUTPUT:")
                 print(sf_out if sf_out else "[EMPTY RESPONSE]")
 
@@ -394,8 +423,8 @@ def main():
                     "technique_picked": sf_top,
                     "system_prompt": sf_system,
                     "user_prompt": sf_user,
-                    "raw_output": sf_out,
-                    "raw_top5": top5_lines(sf_out),
+                    "raw_output": sf_out,  # cleaned if Qwen
+                    "raw_top5": top5_lines(sf_out),  # cleaned
                     "dist": json.dumps(sf_dist_json, ensure_ascii=False)
                 })
 
@@ -411,6 +440,7 @@ def main():
                 tf_out = call_groq_debug(
                     client, tf_msgs, "TECHNIQUE_FIRST", limiter, max_tokens=DIST_MAX_TOKENS
                 )
+
                 print("\nTECHNIQUE_FIRST OUTPUT:")
                 print(tf_out if tf_out else "[EMPTY RESPONSE]")
 
@@ -427,8 +457,8 @@ def main():
                     "technique_picked": tf_top,
                     "system_prompt": tf_system,
                     "user_prompt": tf_user,
-                    "raw_output": tf_out,
-                    "raw_top5": top5_lines(tf_out),
+                    "raw_output": tf_out,  # cleaned if Qwen
+                    "raw_top5": top5_lines(tf_out),  # cleaned
                     "dist": json.dumps(tf_dist_json, ensure_ascii=False)
                 })
 
@@ -439,11 +469,9 @@ def main():
         stopped_early = True
         print("\n🌙 DAILY TOKEN LIMIT REACHED — ENDING RUN GRACEFULLY.")
         print("🌙 Partial results should be saved in the CSV.")
-        # Print a short snippet of the error for sanity
         print(str(e)[:250])
 
     if stopped_early:
-        # Exit cleanly so GitHub Actions can upload artifacts
         return
 
     print("\n✅ Debug run complete.")

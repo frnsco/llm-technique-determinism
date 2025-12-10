@@ -7,17 +7,17 @@ import csv
 import random
 from typing import List, Dict, Tuple
 
-from groq import Groq
+from groq import Groq, RateLimitError
 
-MODEL = "openai/gpt-oss-20b"
+MODEL = "qwen/qwen3-32b"
 TEMPERATURE = 0.01
 
-# --- Rate limit awareness (Groq free tier for these models is often 8K TPM) ---
+# --- Rate limit awareness ---
 TPM_LIMIT = 8000
 TPM_SAFETY = 0.95
 EFFECTIVE_TPM = int(TPM_LIMIT * TPM_SAFETY)
 
-# Per-prompt output caps (much lower than 1024 to reduce TPM pressure)
+# You want to keep these high.
 BASELINE_MAX_TOKENS = 1500
 DIST_MAX_TOKENS = 2000
 
@@ -35,6 +35,16 @@ FIELDNAMES = [
     "raw_top5",
     "dist"
 ]
+
+
+class DailyTokenLimitReached(Exception):
+    """Raised when Groq TPD (tokens per day) limit is reached."""
+    pass
+
+
+def is_tpd_error(err: Exception) -> bool:
+    msg = str(err).lower()
+    return ("tokens per day" in msg) or ("tpd" in msg)
 
 
 def load_json(path: str):
@@ -91,8 +101,6 @@ def append_row(csv_path: str, row: Dict[str, str]):
         writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
         writer.writerow(normalized)
 
-    print(f"📄 CSV append -> { {k: normalized[k] for k in ['test_number','prompt_technique','technique_picked']} }")
-
 
 # ----------------------------
 # Token estimation + limiter
@@ -102,7 +110,6 @@ def estimate_tokens_from_messages(messages: List[Dict[str, str]], max_tokens: in
     """
     Rough heuristic: ~4 characters per token.
     Adds max_tokens as the expected output budget.
-    This is intentionally conservative to reduce TPM flakiness.
     """
     chars = 0
     for m in messages:
@@ -131,10 +138,6 @@ class MinuteTokenLimiter:
 
         now = time.time()
         sleep_time = max(0, 60 - (now - self.window_start)) + 0.5
-        print(
-            f"🧯 TPM throttle: sleeping {sleep_time:.1f}s "
-            f"(used={self.used}, need={estimated_tokens}, cap={self.effective_tpm})"
-        )
         time.sleep(sleep_time)
         self._reset_if_needed()
 
@@ -149,21 +152,8 @@ def call_groq_debug(
     limiter: MinuteTokenLimiter,
     max_tokens: int
 ) -> str:
-    print("\n" + "=" * 80)
-    print(f"📤 SENDING PROMPT: {label}")
-    print("=" * 80)
-
-    for m in messages:
-        # Printing full prompts can be huge with long technique lists.
-        # Show full content, but you can truncate visually if desired.
-        print(f"\n[{m['role'].upper()}]:\n{m['content']}")
-
     est = estimate_tokens_from_messages(messages, max_tokens=max_tokens)
-    print(f"\n🧮 Estimated tokens (input + output cap): ~{est}")
-
     limiter.wait_if_needed(est)
-
-    print("\n🚀 Making API call...\n")
 
     try:
         resp = client.chat.completions.create(
@@ -172,29 +162,14 @@ def call_groq_debug(
             temperature=TEMPERATURE,
             max_tokens=max_tokens
         )
-    except Exception as e:
-        print("\n❌ ERROR DURING API CALL:")
-        print(repr(e))
+    except RateLimitError as e:
+        if is_tpd_error(e):
+            raise DailyTokenLimitReached(str(e))
         raise
-
-    # Try to print usage if the SDK returns it
-    try:
-        usage = getattr(resp, "usage", None)
-        if usage:
-            print(f"📊 API usage object: {usage}")
-    except Exception:
-        pass
 
     limiter.record(est)
 
     output = (resp.choices[0].message.content or "").strip()
-
-    print("\n" + "-" * 80)
-    print(f"📥 RAW RESPONSE: {label}")
-    print("-" * 80)
-    print(output if output else "[EMPTY RESPONSE]")
-    print("-" * 80 + "\n")
-
     return output
 
 
@@ -270,7 +245,6 @@ def parse_distribution(text: str, style: str) -> List[Tuple[str, float]]:
     Parses:
       score_first:     <score>: <Technique name>
       technique_first: <Technique name>: <score>
-
     Returns top 5 sorted by score desc.
     """
     lines = [l.strip() for l in text.splitlines() if l.strip()]
@@ -333,7 +307,6 @@ def main():
     parser.add_argument("--all_scenarios", action="store_true")
     args = parser.parse_args()
 
-    print("🔧 Loading techniques + scenarios...")
     techniques_master = load_json(args.techniques)
     scenarios = load_json(args.scenarios)
 
@@ -346,136 +319,134 @@ def main():
 
     api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
-        raise RuntimeError("❌ Missing GROQ_API_KEY env var.")
+        raise RuntimeError("Missing GROQ_API_KEY env var.")
     client = Groq(api_key=api_key)
 
     limiter = MinuteTokenLimiter(EFFECTIVE_TPM)
 
-    print(f"✅ Model: {MODEL}")
-    print(f"✅ Temperature: {TEMPERATURE}")
-    print(f"✅ Effective TPM cap (safety): {EFFECTIVE_TPM}/{TPM_LIMIT}")
-    print(f"✅ Scenarios used: {len(selected_scenarios)} "
-          f"({'ALL' if args.all_scenarios else 'FIRST ONLY'})")
-    print(f"✅ Randomizations per scenario (--num_tests): {args.num_tests}")
-    print(f"✅ Extra sleep after calls: {args.sleep}s")
-    print(f"✅ CSV path: {args.csv}")
-    print(f"✅ Max tokens: baseline={BASELINE_MAX_TOKENS}, distributions={DIST_MAX_TOKENS}")
-
     test_number = 0
+    stopped_early = False
 
-    for scenario in selected_scenarios:
-        scenario_text = str(scenario).strip()
+    try:
+        for scenario in selected_scenarios:
+            scenario_text = str(scenario).strip()
 
-        print("\n" + "#" * 80)
-        print(f"🧩 SCENARIO:\n{scenario_text}")
-        print("#" * 80)
+            for _ in range(args.num_tests):
+                test_number += 1
+                print(f"\n🧪 TEST #{test_number}")
 
-        for _ in range(args.num_tests):
-            test_number += 1
+                # Shuffle for THIS randomization
+                techniques_for_prompt = list(techniques_master)
+                random.shuffle(techniques_for_prompt)
+                block = technique_block(techniques_for_prompt)
 
-            print("\n" + "=" * 80)
-            print(f"🧪 TEST #{test_number} (new technique shuffle)")
-            print("=" * 80)
+                # -------------------
+                # BASELINE
+                # -------------------
+                baseline_msgs = baseline_prompt(scenario_text, block)
+                baseline_system, baseline_user = extract_system_user(baseline_msgs)
 
-            # Shuffle for THIS randomization
-            techniques_for_prompt = list(techniques_master)
-            random.shuffle(techniques_for_prompt)
-            block = technique_block(techniques_for_prompt)
+                baseline_out = call_groq_debug(
+                    client, baseline_msgs, "BASELINE", limiter, max_tokens=BASELINE_MAX_TOKENS
+                )
+                print("BASELINE OUTPUT:")
+                print(baseline_out if baseline_out else "[EMPTY RESPONSE]")
 
-            print(f"📚 Techniques in prompt: {len(techniques_for_prompt)}")
-            print("🔀 Technique order shuffled.")
+                append_row(args.csv, {
+                    "test_number": str(test_number),
+                    "scenario": scenario_text,
+                    "prompt_technique": "baseline",
+                    "model": MODEL,
+                    "temperature": str(TEMPERATURE),
+                    "technique_picked": baseline_out,
+                    "system_prompt": baseline_system,
+                    "user_prompt": baseline_user,
+                    "raw_output": baseline_out,
+                    "raw_top5": "",
+                    "dist": "[]"
+                })
 
-            # -------------------
-            # BASELINE
-            # -------------------
-            baseline_msgs = baseline_prompt(scenario_text, block)
-            baseline_system, baseline_user = extract_system_user(baseline_msgs)
+                if args.sleep > 0:
+                    time.sleep(args.sleep)
 
-            baseline_out = call_groq_debug(
-                client, baseline_msgs, "BASELINE", limiter, max_tokens=BASELINE_MAX_TOKENS
-            )
+                # -------------------
+                # SCORE_FIRST
+                # -------------------
+                sf_msgs = comparison_prompt(scenario_text, block, "score_first")
+                sf_system, sf_user = extract_system_user(sf_msgs)
 
-            append_row(args.csv, {
-                "test_number": str(test_number),
-                "scenario": scenario_text,
-                "prompt_technique": "baseline",
-                "model": MODEL,
-                "temperature": str(TEMPERATURE),
-                "technique_picked": baseline_out,
-                "system_prompt": baseline_system,
-                "user_prompt": baseline_user,
-                "raw_output": baseline_out,
-                "raw_top5": "",
-                "dist": "[]"
-            })
+                sf_out = call_groq_debug(
+                    client, sf_msgs, "SCORE_FIRST", limiter, max_tokens=DIST_MAX_TOKENS
+                )
+                print("\nSCORE_FIRST OUTPUT:")
+                print(sf_out if sf_out else "[EMPTY RESPONSE]")
 
-            if args.sleep > 0:
-                print(f"⏱️ Extra sleep {args.sleep}s...\n")
-                time.sleep(args.sleep)
+                sf_dist = parse_distribution(sf_out, "score_first")
+                sf_top = top1_name_from_dist(sf_dist)
+                sf_dist_json = [[n, s] for n, s in sf_dist]
 
-            # -------------------
-            # SCORE_FIRST
-            # -------------------
-            sf_msgs = comparison_prompt(scenario_text, block, "score_first")
-            sf_system, sf_user = extract_system_user(sf_msgs)
+                append_row(args.csv, {
+                    "test_number": str(test_number),
+                    "scenario": scenario_text,
+                    "prompt_technique": "score_first",
+                    "model": MODEL,
+                    "temperature": str(TEMPERATURE),
+                    "technique_picked": sf_top,
+                    "system_prompt": sf_system,
+                    "user_prompt": sf_user,
+                    "raw_output": sf_out,
+                    "raw_top5": top5_lines(sf_out),
+                    "dist": json.dumps(sf_dist_json, ensure_ascii=False)
+                })
 
-            sf_out = call_groq_debug(
-                client, sf_msgs, "SCORE_FIRST", limiter, max_tokens=DIST_MAX_TOKENS
-            )
-            sf_dist = parse_distribution(sf_out, "score_first")
-            sf_top = top1_name_from_dist(sf_dist)
-            sf_dist_json = [[n, s] for n, s in sf_dist]
+                if args.sleep > 0:
+                    time.sleep(args.sleep)
 
-            append_row(args.csv, {
-                "test_number": str(test_number),
-                "scenario": scenario_text,
-                "prompt_technique": "score_first",
-                "model": MODEL,
-                "temperature": str(TEMPERATURE),
-                "technique_picked": sf_top,
-                "system_prompt": sf_system,
-                "user_prompt": sf_user,
-                "raw_output": sf_out,
-                "raw_top5": top5_lines(sf_out),
-                "dist": json.dumps(sf_dist_json, ensure_ascii=False)
-            })
+                # -------------------
+                # TECHNIQUE_FIRST
+                # -------------------
+                tf_msgs = comparison_prompt(scenario_text, block, "technique_first")
+                tf_system, tf_user = extract_system_user(tf_msgs)
 
-            if args.sleep > 0:
-                print(f"⏱️ Extra sleep {args.sleep}s...\n")
-                time.sleep(args.sleep)
+                tf_out = call_groq_debug(
+                    client, tf_msgs, "TECHNIQUE_FIRST", limiter, max_tokens=DIST_MAX_TOKENS
+                )
+                print("\nTECHNIQUE_FIRST OUTPUT:")
+                print(tf_out if tf_out else "[EMPTY RESPONSE]")
 
-            # -------------------
-            # TECHNIQUE_FIRST
-            # -------------------
-            tf_msgs = comparison_prompt(scenario_text, block, "technique_first")
-            tf_system, tf_user = extract_system_user(tf_msgs)
+                tf_dist = parse_distribution(tf_out, "technique_first")
+                tf_top = top1_name_from_dist(tf_dist)
+                tf_dist_json = [[n, s] for n, s in tf_dist]
 
-            tf_out = call_groq_debug(
-                client, tf_msgs, "TECHNIQUE_FIRST", limiter, max_tokens=DIST_MAX_TOKENS
-            )
-            tf_dist = parse_distribution(tf_out, "technique_first")
-            tf_top = top1_name_from_dist(tf_dist)
-            tf_dist_json = [[n, s] for n, s in tf_dist]
+                append_row(args.csv, {
+                    "test_number": str(test_number),
+                    "scenario": scenario_text,
+                    "prompt_technique": "technique_first",
+                    "model": MODEL,
+                    "temperature": str(TEMPERATURE),
+                    "technique_picked": tf_top,
+                    "system_prompt": tf_system,
+                    "user_prompt": tf_user,
+                    "raw_output": tf_out,
+                    "raw_top5": top5_lines(tf_out),
+                    "dist": json.dumps(tf_dist_json, ensure_ascii=False)
+                })
 
-            append_row(args.csv, {
-                "test_number": str(test_number),
-                "scenario": scenario_text,
-                "prompt_technique": "technique_first",
-                "model": MODEL,
-                "temperature": str(TEMPERATURE),
-                "technique_picked": tf_top,
-                "system_prompt": tf_system,
-                "user_prompt": tf_user,
-                "raw_output": tf_out,
-                "raw_top5": top5_lines(tf_out),
-                "dist": json.dumps(tf_dist_json, ensure_ascii=False)
-            })
+                if args.sleep > 0:
+                    time.sleep(args.sleep)
 
-            if args.sleep > 0:
-                print(f"⏱️ Extra sleep {args.sleep}s...\n")
-                time.sleep(args.sleep)
+    except DailyTokenLimitReached as e:
+        stopped_early = True
+        print("\n🌙 DAILY TOKEN LIMIT REACHED — ENDING RUN GRACEFULLY.")
+        print("🌙 Partial results should be saved in the CSV.")
+        # Print a short snippet of the error for sanity
+        print(str(e)[:250])
 
-    print("\n🎉 Debug run complete.\n")
+    if stopped_early:
+        # Exit cleanly so GitHub Actions can upload artifacts
+        return
+
+    print("\n✅ Debug run complete.")
 
 
 if __name__ == "__main__":

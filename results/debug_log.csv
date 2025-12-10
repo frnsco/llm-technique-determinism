@@ -1,0 +1,490 @@
+test_number,scenario,prompt_technique,model,temperature,technique_picked,system_prompt,user_prompt,raw_output,raw_top5,dist
+1,I'm a 24 year old Nigerian male who is gay and suffers with anxiety constantly.,baseline,openai/gpt-oss-20b,0.01,Diaphragmatic Breathing,Select the single most appropriate mental health technique from the provided list based on the user's stated concerns. Output ONLY the exact technique name from the list.,"For this user: ""I'm a 24 year old Nigerian male who is gay and suffers with anxiety constantly.""
+
+Suggest a technique from this list, just output the technique name:
+- Diaphragmatic Breathing: Breathe deeply into the belly (not the chest) to signal safety to the nervous system.
+- Interoceptive Exposure: Intentionally induce physical sensations of panic (e.g., spinning, running in place) to learn they are not dangerous.
+- IMPROVE: Encouragement: Cheerlead yourself with statements like ""I can stand this"" or ""This will pass"".
+- Externalization of Voices: Give the negative thought pattern a persona or name to separate it from your core identity.
+- Palm Cupping for Eyes: Place warm palms over closed eyes to reduce visual stimulation and soothe the nervous system.
+- Sleep Restriction: Temporarily limit time in bed to match actual sleep time (e.g., 6 hours) to build high sleep pressure and efficiency.
+- The ""I'm Having the Thought That..."": Rephrase ""I am a failure"" to ""I am having the thought that I am a failure"" to create distance.
+- Values Bullseye: Plot current behaviors on a target to see how close they are to the ""bullseye"" of your core values.
+- The ""Voo"" Sound: Inhale deeply and make a low, vibrating ""Voo"" sound on the exhale to stimulate the vagus nerve in the chest and belly.
+- Resonant Breathing: Breathe at a rate of roughly 5-6 breaths per minute to synchronize heart rate variability (HRV).
+- Body Scanning: Systematically sweep attention through the body to identify areas of tension or numbness.
+- The Miracle Question: Ask ""If a miracle solved your problem tonight while you slept, what would be the first thing you noticed differently tomorrow?"" to identify goals.
+- Music Playlist Therapy: Create playlists specifically designed to evoke or soothe specific emotional states.
+- Compliments: The therapist validates specific strengths and successes noticed during the session to reinforce agency.
+- Physicalizing the Emotion: Give an emotion a shape, color, weight, and texture to objectify and accept it.
+- Progressive Muscle Relaxation (PMR): Tense and release muscles from toe to head to physically induce relaxation in bed.
+- TIPP: Temperature: Submerge the face in cold water (or use an ice pack) for 30 seconds to trigger the Mammalian Dive Reflex and slow the heart rate.
+- Treating Thoughts as Guesses: Label predictions about the future as hypotheses rather than facts, requiring data collection to verify.
+- Cognitive Reframing: Consciously identify a negative interpretation of an event and actively generate a more neutral or positive alternative interpretation.
+- Separating Fact from Opinion: Systematically categorize internal dialogue into objective facts (observable data) and subjective opinions (interpretations).
+- Presupposing Change: Ask ""What is better since last time?"" rather than ""Is anything better?"", assuming positive change has occurred.
+- Pleasant Activity Scheduling: Intentionally schedule simple, high-reward activities to increase positive reinforcement in daily life.
+- Behavioral Experiments: Design a real-world test to verify a belief (e.g., ""If I speak up, people will laugh"") and record the actual outcome.
+- The ""Best Friend"" Technique: Ask, ""What would I say to my best friend if they were in this situation?"" to foster self-compassion and objectivity.
+- RESISTT: Reframe, Engage, Someone else, Intense sensations, Shut it out, Think neutral, Take a break.
+- The Magic Wand Question: Ask ""If a magic wand took away this pain, what would you be doing with your life?"" to identify neglected values.
+- Savoring: Intentionally prolong the enjoyment of a positive experience (e.g., eating a meal slowly).
+- Tactile Activation: Rub arms or legs vigorously to wake up the skin boundaries and return to the body.
+- Timeline Construction: Create a timeline of life events to gain perspective on the duration and transience of problems.
+- Clouds in the Sky: View thoughts as weather (clouds) and the self as the sky; the sky contains the weather but is not damaged by it.
+- The 6 Fs: Find, Focus, Flesh out, Feel toward, Befriend, and check for Fears to get to know a part.
+- Deconstruction of Truths: Examine societal ""truths"" (e.g., ""Men must be strong"") to see if they serve the client's narrative.
+- Savoring the Exhale: Focus specifically on the sensation of the air leaving the body to encourage the ""letting go"" response.
+- Accumulating Positive Emotions: Build a ""life worth living"" by engaging in positive events daily to buffer against stress.
+- Pursed Lip Breathing: Inhale through the nose and exhale slowly through pursed lips (like blowing a candle) to slow respiration.
+- Role Playing: Rehearse a difficult conversation or situation in a safe environment to build confidence and skills.
+- Smallest Difference: Identify the smallest possible change that would indicate progress.
+- Repetition (Milk, Milk, Milk): Repeat a difficult word or thought until it loses its meaning and becomes just a sound.
+- Imaginal Exposure: Vividly visualize a feared scenario in the present tense to habituate to the anxiety it provokes.
+- PLEASE Skill: Treat Physical illness, balance Eating, avoid Altering drugs, Sleep well, Exercise to reduce vulnerability.
+- Asking ""What are you afraid would happen?"": Ask a protective part what it fears would happen if it stopped doing its job.
+- Unblending: Ask a part to ""step back"" or ""separate"" from the Self so it can be observed rather than being the observer.
+- Checking for Polarization: Identify two parts in conflict (e.g., one wants to work, one wants to sleep) and mediate between them.
+- Yawning: Intentionally yawn repeatedly to activate the vagus nerve and cool the brain.
+- Weighted Blanket: Use deep pressure stimulation to increase serotonin and decrease cortisol.
+- Labeling Thoughts: Categorize thoughts as they arise (e.g., ""Thinking,"" ""Judging,"" ""Planning"") to reduce engagement.
+- Walking in Nature (Forest Bathing): Walk slowly in a green environment to lower cortisol and engage soft fascination.
+- Unique Outcomes: Highlight moments that contradict the ""problem-saturated"" story (e.g., ""You stood up for yourself there?"").
+- Naming the Story: Identify repetitive thought patterns (e.g., ""Ah, here is the 'I'm not good enough' story again"").
+- Direct Access: The therapist talks directly to the part (e.g., ""Can I speak to the Anger?"") rather than the client talking about the part.
+- Expansion: Breathe into and make room for a difficult feeling in the body, rather than contracting around it.
+- The Struggle Switch: Visualize anxiety as a switch; when ""on,"" you struggle and amplify it. Turn the switch ""off"" by dropping the struggle, even if anxiety remains.
+- Alternate Nostril Breathing: Breathe in through one nostril, hold, and breathe out through the other to balance the hemispheres.
+- Leaves on a Stream: Visualize thoughts as leaves floating down a stream; watch them pass without picking them up.
+- Heel Drops: Rise on toes and drop heels firmly to the floor to discharge tension and ground through the skeletal system.
+- Continuum Technique: Place a feared characteristic (e.g., ""incompetence"") on a continuum from 0-100% to see where one truly falls, avoiding binary labeling.
+- Cognitive Shuffling: Visualize random, unrelated objects (e.g., ""cow,"" ""bread,"" ""star"") to interrupt ruminative thought loops and induce sleep onset.
+- Mandala Drawing: Draw and color inside a circle to induce a meditative state and contain chaotic emotions.
+- ABC Functional Analysis: Analyze the Antecedent (trigger), Behavior (reaction), and Consequence (outcome) to understand the function of a habit.
+- Replacing ""What If"" with ""Then What"": Shift from ruminating on a potential disaster to planning specific coping steps if the event actually occurred.
+- Mindfulness of Current Emotions: Observe the emotion as a wave, noting its rise and fall without blocking or amplifying it.
+- Defining Terms: Ask for specific definitions of labeled terms (e.g., ""What exactly does it mean to be a 'failure'?"") to expose the vagueness of self-criticism.
+- Identifying Cognitive Distortions: Label thoughts with specific distortion names (e.g., ""This is all-or-nothing thinking"") to reduce their subjective authority.
+- Box Breathing: Inhale 4, Hold 4, Exhale 4, Hold 4 to regulate the autonomic nervous system.
+- The Unwelcome Party Guest: Treat anxiety like an obnoxious guest at a party you are hosting; you don't have to like them, but you don't have to kick them out to enjoy the party.
+- The Tombstone Exercise: Write the inscription you would want on your tombstone to distill your life's purpose.
+- Externalizing the Problem: Refer to the problem as an entity (e.g., ""The Depression"" or ""The Anger"") rather than a trait (""I am angry"").
+- Clean vs. Dirty Discomfort: Distinguish between ""clean"" pain (natural emotion) and ""dirty"" pain (suffering caused by struggling against the emotion).
+- STOP Skill: Stop (freeze), Take a step back, Observe the situation, and Proceed mindfully.
+- Cost-Benefit Analysis of Worry: List the advantages and disadvantages of holding onto a specific worry to determine if it serves a protective function.
+- Cognitive Pie Chart: Create a pie chart to allocate responsibility for an event, reducing the tendency to assume 100% personal blame.
+- IMPROVE: Prayer: Open the heart to a supreme being or the universe to ask for strength.
+- The ""Worry Chair"": Designate a specific chair (not the bed) for worrying; if worries arise in bed, move to the chair.
+- FAST: Be Fair, No Apologies (for having needs), Stick to values, Be Truthful.
+- The ""Not-Knowing"" Stance: The therapist adopts a posture of curiosity rather than expertise to empower the client.
+- Future Pull: Vividly imagine a preferred future to generate present-moment motivation.
+- The Self-Hug: Wrap arms around the chest and squeeze firmly to provide containment and proprioceptive feedback.
+- 4-7-8 Breathing: Inhale for 4, hold for 7, exhale audibly for 8 to enforce a long exhalation that triggers relaxation.
+- Neck Rotation (The Basic Exercise): Interlace fingers behind the head, look to the right with eyes only (keeping head still) until you yawn, sigh, or swallow.
+- Externalizing the Critic: Visualize the inner critic as a separate character to reduce fusion with its message.
+- Values Sorting: Sort a list of values (e.g., Freedom, Intimacy) into ""Very Important,"" ""Important,"" and ""Not Important"" to prioritize focus.
+- Pros and Cons List: Analyze the consequences of tolerating distress versus acting on an impulsive urge.
+- Self-Soothe (5 Senses): Consciously comfort yourself using vision, hearing, smell, taste, and touch (e.g., lighting a scented candle).
+- Pushing Against the Wall: Push hands firmly against a wall to engage muscles and sense boundaries and strength.
+- Half-Smile: Relax the facial muscles and adopt a serene, slight smile to send feedback to the brain to regulate emotion.
+- ACCEPTS: Contributing: Do something kind for another person to shift focus away from self-centric distress.
+- Problem-Solving Worksheet: Break a problem into specific steps, brainstorm solutions, select one, and plan implementation.
+- The Survey Method: Ask trusted friends or colleagues how they would view or handle a specific situation to reality-test assumptions.
+- Pendulation: Shift attention back and forth between an area of distress and an area of neutral/resourceful sensation in the body.
+- ACCEPTS: Activities: Distract from distress by engaging in a neutral activity like cleaning or a hobby.
+- Ear Massage: Gently massage the cymba conchae (inner ear) to stimulate the auricular branch of the vagus nerve.
+- Clay Sculpting: Smash, smooth, or mold clay to express anger or reconstruct a sense of self.
+- Urge Surfing: Visualize the urge as a wave; watch it rise, peak, and crash without giving in to it.
+- Graded Task Assignment: Break a large, overwhelming task into micro-steps to overcome procrastination.
+- Thanking Your Mind: Respond to unhelpful thoughts with ""Thank you, Mind, for that interesting story"".
+- ACCEPTS: Thoughts: Engage the mind in a demanding task like counting backward from 100 by 7s.
+- Do Something Different: If a current solution isn't working, do anything else, no matter how strange, to break the pattern.
+- IMPROVE: One Thing in the Moment: Focus entire attention on a single task, blocking out the past and future.
+- Committed Action Goals: Set small, value-driven goals that are achievable regardless of your emotional state.
+- Decatastrophizing: Ask ""What is the worst that could happen, and if it did, how would I cope?"" to reduce the perceived magnitude of a feared event.
+- Physiological Sigh: Two quick inhales through the nose followed by one long exhale through the mouth to offload carbon dioxide and calm the system.
+- Response Prevention: Deliberately expose yourself to a trigger (e.g., dirt) and refuse to engage in the compulsive safety behavior (e.g., washing).
+- Relationship Questions: Ask ""What would your mother/partner/friend say they appreciate about you?"" to shift perspective.
+- TIPP: Paired Muscle Relaxation: Tense muscle groups while inhaling, and relax them deeply while exhaling.
+- Willing Hands: Turn palms upward and open the hands to embody an attitude of acceptance and non-aggression.
+- Three Good Things: List three things that went well today and why they happened to build self-efficacy.
+- TIPP: Intense Exercise: Engage in short bursts of high-intensity cardio (e.g., jumping jacks) to burn off acute emotional arousal.
+- Socratic Questioning: Use disciplined questioning to challenge assumptions, such as ""What is the evidence for this thought?"" and ""Is there an alternative explanation?"".
+- Balanced Predictions: Write down the worst-case scenario, the best-case scenario, and the most likely scenario to combat fortune-telling.
+- The Choice Point: Map out a situation to identify ""Towards moves"" (acting on values) versus ""Away moves"" (avoiding discomfort).
+- Titration: Process traumatic material in tiny, manageable ""drops"" rather than flooding the system.
+- Grounding (5-4-3-2-1): Identify 5 things you see, 4 feel, 3 hear, 2 smell, 1 taste to engage the prefrontal cortex.
+- IMPROVE: Vacation: Take a brief break from adulthood responsibilities (e.g., hide under the covers for 10 minutes).
+- Updating the Part: Inform a part that the client is no longer a child and has adult resources now.
+- Grounding: Physically connect feet to the floor and describe the physical environment to exit emotional escalation.
+- GIVE: Be Gentle, act Interested, Validate the other, use an Easy manner.
+- Daily Parts Check-in: Spend 5 minutes daily asking ""Who is here?"" and ""What do you need?"" to your internal system.
+- Retrieval/Unburdening: Visualize going into the past to retrieve an Exile from a traumatic memory and bringing them to a safe place.
+- Bedtime Buffer Zone: Create a 60-minute wind-down period with no screens and low light before bed.
+- ACCEPTS: Sensations: Hold an ice cube or squeeze a rubber ball to ground yourself with intense physical sensation.
+- 4-7-8 Breathing for Sleep: Use the 4-7-8 breathing pattern specifically to lower heart rate at bedtime.
+- The Path Exercise: Visualize walking down a path and asking parts to wait behind, allowing the Self to emerge.
+- DEAR MAN: Describe facts, Express feelings, Assert wishes, Reinforce others, Stay Mindful, Appear confident, Negotiate.
+- Random Acts of Kindness: Perform small, anonymous favors to boost oxytocin and social connection.
+- The Tree of Life: Draw a tree representing roots (history), trunk (skills), branches (hopes), and leaves (people) to consolidate identity.
+- Self-to-Part Dialogue: Journal a conversation between the ""Self"" and a specific part.
+- Opposite Action: Identify the urge associated with an emotion (e.g., fear = avoid) and do the exact opposite (e.g., approach).
+- IMPROVE: Imagery: Visualize a safe, relaxing scene or a ""mental vacation"" to escape current stress.
+- Parts Mapping: Draw a diagram of your internal system to visualize relationships and conflicts between parts.
+- Color Your Mood: Assign colors to emotions and fill a body outline to map where feelings live.
+- Humming or Chanting ""Om"": Hum or chant to create vibration in the vocal cords, which stimulates the vagus nerve.
+- The Best Possible Self: Write a narrative about a future where everything has gone as well as possible.
+- Behavioral Activation: Engage in a behavior before feeling the motivation to do so, recognizing that action often precedes emotion.
+- Resource Activation: Explicitly list external and internal resources available to solve the current crisis.
+- Passengers on the Bus: Imagine yourself as the driver of a bus and your thoughts as noisy passengers; keep driving your route regardless of what they shout.
+- Graded Exposure Hierarchy: List feared situations from least to most anxiety-provoking and systematically expose yourself to them.
+- ACCEPTS: Emotions: Generate a different emotion by watching a funny movie or listening to upbeat music.
+- Putting Thoughts on Trial: Act as a defense attorney and prosecutor for a distressing thought to objectively weigh the evidence before rendering a verdict.
+- Gargling: Gargle water aggressively to stimulate the pharyngeal muscles connected to the vagus nerve.
+- Physicalizing the Thought: Imagine the thought as an object in front of you; what is its shape, color, and size?.
+- Gratitude Journaling: Write down 3-5 things you are grateful for daily to retrain the brain's negativity bias.
+- Letter Writing: Write a letter to the problem (e.g., ""Dear Anxiety, I am breaking up with you..."").
+- The Room Technique: Visualize a part in a room and view it through a window to establish safe distance.
+- Mastery and Pleasure Ratings: Rate daily activities on a scale of 0–10 for ""Mastery"" (sense of accomplishment) and ""Pleasure"" to identify energy sources.
+- Circular Questioning: Ask A how they think B feels about C's behavior to reveal systemic patterns.
+- Cost Benefit Analysis: Systematically evaluate the costs and benefits of a target behavior vs. an alternative behavior.
+- Problem Solving: Identify the specific problem causing distress and implement a solution rather than regulating the emotion.
+- The 80th Birthday Speech: Imagine what you would want loved ones to say about your character at your 80th birthday to clarify values.
+- Radio Doom and Gloom: Treat the mind as a radio playing a background track of negativity while you focus on other tasks.
+- Mapping the Influence: Explore how the problem impacts the person's life and how the person impacts the problem's life.",Diaphragmatic Breathing,,[]
+1,I'm a 24 year old Nigerian male who is gay and suffers with anxiety constantly.,score_first,openai/gpt-oss-20b,0.01,Diaphragmatic Breathing,Rank the top 5 most appropriate techniques from the provided list based on the user's stated concerns.,"For this user: ""I'm a 24 year old Nigerian male who is gay and suffers with anxiety constantly.""
+
+Suggest a technique from this list:
+- Diaphragmatic Breathing: Breathe deeply into the belly (not the chest) to signal safety to the nervous system.
+- Interoceptive Exposure: Intentionally induce physical sensations of panic (e.g., spinning, running in place) to learn they are not dangerous.
+- IMPROVE: Encouragement: Cheerlead yourself with statements like ""I can stand this"" or ""This will pass"".
+- Externalization of Voices: Give the negative thought pattern a persona or name to separate it from your core identity.
+- Palm Cupping for Eyes: Place warm palms over closed eyes to reduce visual stimulation and soothe the nervous system.
+- Sleep Restriction: Temporarily limit time in bed to match actual sleep time (e.g., 6 hours) to build high sleep pressure and efficiency.
+- The ""I'm Having the Thought That..."": Rephrase ""I am a failure"" to ""I am having the thought that I am a failure"" to create distance.
+- Values Bullseye: Plot current behaviors on a target to see how close they are to the ""bullseye"" of your core values.
+- The ""Voo"" Sound: Inhale deeply and make a low, vibrating ""Voo"" sound on the exhale to stimulate the vagus nerve in the chest and belly.
+- Resonant Breathing: Breathe at a rate of roughly 5-6 breaths per minute to synchronize heart rate variability (HRV).
+- Body Scanning: Systematically sweep attention through the body to identify areas of tension or numbness.
+- The Miracle Question: Ask ""If a miracle solved your problem tonight while you slept, what would be the first thing you noticed differently tomorrow?"" to identify goals.
+- Music Playlist Therapy: Create playlists specifically designed to evoke or soothe specific emotional states.
+- Compliments: The therapist validates specific strengths and successes noticed during the session to reinforce agency.
+- Physicalizing the Emotion: Give an emotion a shape, color, weight, and texture to objectify and accept it.
+- Progressive Muscle Relaxation (PMR): Tense and release muscles from toe to head to physically induce relaxation in bed.
+- TIPP: Temperature: Submerge the face in cold water (or use an ice pack) for 30 seconds to trigger the Mammalian Dive Reflex and slow the heart rate.
+- Treating Thoughts as Guesses: Label predictions about the future as hypotheses rather than facts, requiring data collection to verify.
+- Cognitive Reframing: Consciously identify a negative interpretation of an event and actively generate a more neutral or positive alternative interpretation.
+- Separating Fact from Opinion: Systematically categorize internal dialogue into objective facts (observable data) and subjective opinions (interpretations).
+- Presupposing Change: Ask ""What is better since last time?"" rather than ""Is anything better?"", assuming positive change has occurred.
+- Pleasant Activity Scheduling: Intentionally schedule simple, high-reward activities to increase positive reinforcement in daily life.
+- Behavioral Experiments: Design a real-world test to verify a belief (e.g., ""If I speak up, people will laugh"") and record the actual outcome.
+- The ""Best Friend"" Technique: Ask, ""What would I say to my best friend if they were in this situation?"" to foster self-compassion and objectivity.
+- RESISTT: Reframe, Engage, Someone else, Intense sensations, Shut it out, Think neutral, Take a break.
+- The Magic Wand Question: Ask ""If a magic wand took away this pain, what would you be doing with your life?"" to identify neglected values.
+- Savoring: Intentionally prolong the enjoyment of a positive experience (e.g., eating a meal slowly).
+- Tactile Activation: Rub arms or legs vigorously to wake up the skin boundaries and return to the body.
+- Timeline Construction: Create a timeline of life events to gain perspective on the duration and transience of problems.
+- Clouds in the Sky: View thoughts as weather (clouds) and the self as the sky; the sky contains the weather but is not damaged by it.
+- The 6 Fs: Find, Focus, Flesh out, Feel toward, Befriend, and check for Fears to get to know a part.
+- Deconstruction of Truths: Examine societal ""truths"" (e.g., ""Men must be strong"") to see if they serve the client's narrative.
+- Savoring the Exhale: Focus specifically on the sensation of the air leaving the body to encourage the ""letting go"" response.
+- Accumulating Positive Emotions: Build a ""life worth living"" by engaging in positive events daily to buffer against stress.
+- Pursed Lip Breathing: Inhale through the nose and exhale slowly through pursed lips (like blowing a candle) to slow respiration.
+- Role Playing: Rehearse a difficult conversation or situation in a safe environment to build confidence and skills.
+- Smallest Difference: Identify the smallest possible change that would indicate progress.
+- Repetition (Milk, Milk, Milk): Repeat a difficult word or thought until it loses its meaning and becomes just a sound.
+- Imaginal Exposure: Vividly visualize a feared scenario in the present tense to habituate to the anxiety it provokes.
+- PLEASE Skill: Treat Physical illness, balance Eating, avoid Altering drugs, Sleep well, Exercise to reduce vulnerability.
+- Asking ""What are you afraid would happen?"": Ask a protective part what it fears would happen if it stopped doing its job.
+- Unblending: Ask a part to ""step back"" or ""separate"" from the Self so it can be observed rather than being the observer.
+- Checking for Polarization: Identify two parts in conflict (e.g., one wants to work, one wants to sleep) and mediate between them.
+- Yawning: Intentionally yawn repeatedly to activate the vagus nerve and cool the brain.
+- Weighted Blanket: Use deep pressure stimulation to increase serotonin and decrease cortisol.
+- Labeling Thoughts: Categorize thoughts as they arise (e.g., ""Thinking,"" ""Judging,"" ""Planning"") to reduce engagement.
+- Walking in Nature (Forest Bathing): Walk slowly in a green environment to lower cortisol and engage soft fascination.
+- Unique Outcomes: Highlight moments that contradict the ""problem-saturated"" story (e.g., ""You stood up for yourself there?"").
+- Naming the Story: Identify repetitive thought patterns (e.g., ""Ah, here is the 'I'm not good enough' story again"").
+- Direct Access: The therapist talks directly to the part (e.g., ""Can I speak to the Anger?"") rather than the client talking about the part.
+- Expansion: Breathe into and make room for a difficult feeling in the body, rather than contracting around it.
+- The Struggle Switch: Visualize anxiety as a switch; when ""on,"" you struggle and amplify it. Turn the switch ""off"" by dropping the struggle, even if anxiety remains.
+- Alternate Nostril Breathing: Breathe in through one nostril, hold, and breathe out through the other to balance the hemispheres.
+- Leaves on a Stream: Visualize thoughts as leaves floating down a stream; watch them pass without picking them up.
+- Heel Drops: Rise on toes and drop heels firmly to the floor to discharge tension and ground through the skeletal system.
+- Continuum Technique: Place a feared characteristic (e.g., ""incompetence"") on a continuum from 0-100% to see where one truly falls, avoiding binary labeling.
+- Cognitive Shuffling: Visualize random, unrelated objects (e.g., ""cow,"" ""bread,"" ""star"") to interrupt ruminative thought loops and induce sleep onset.
+- Mandala Drawing: Draw and color inside a circle to induce a meditative state and contain chaotic emotions.
+- ABC Functional Analysis: Analyze the Antecedent (trigger), Behavior (reaction), and Consequence (outcome) to understand the function of a habit.
+- Replacing ""What If"" with ""Then What"": Shift from ruminating on a potential disaster to planning specific coping steps if the event actually occurred.
+- Mindfulness of Current Emotions: Observe the emotion as a wave, noting its rise and fall without blocking or amplifying it.
+- Defining Terms: Ask for specific definitions of labeled terms (e.g., ""What exactly does it mean to be a 'failure'?"") to expose the vagueness of self-criticism.
+- Identifying Cognitive Distortions: Label thoughts with specific distortion names (e.g., ""This is all-or-nothing thinking"") to reduce their subjective authority.
+- Box Breathing: Inhale 4, Hold 4, Exhale 4, Hold 4 to regulate the autonomic nervous system.
+- The Unwelcome Party Guest: Treat anxiety like an obnoxious guest at a party you are hosting; you don't have to like them, but you don't have to kick them out to enjoy the party.
+- The Tombstone Exercise: Write the inscription you would want on your tombstone to distill your life's purpose.
+- Externalizing the Problem: Refer to the problem as an entity (e.g., ""The Depression"" or ""The Anger"") rather than a trait (""I am angry"").
+- Clean vs. Dirty Discomfort: Distinguish between ""clean"" pain (natural emotion) and ""dirty"" pain (suffering caused by struggling against the emotion).
+- STOP Skill: Stop (freeze), Take a step back, Observe the situation, and Proceed mindfully.
+- Cost-Benefit Analysis of Worry: List the advantages and disadvantages of holding onto a specific worry to determine if it serves a protective function.
+- Cognitive Pie Chart: Create a pie chart to allocate responsibility for an event, reducing the tendency to assume 100% personal blame.
+- IMPROVE: Prayer: Open the heart to a supreme being or the universe to ask for strength.
+- The ""Worry Chair"": Designate a specific chair (not the bed) for worrying; if worries arise in bed, move to the chair.
+- FAST: Be Fair, No Apologies (for having needs), Stick to values, Be Truthful.
+- The ""Not-Knowing"" Stance: The therapist adopts a posture of curiosity rather than expertise to empower the client.
+- Future Pull: Vividly imagine a preferred future to generate present-moment motivation.
+- The Self-Hug: Wrap arms around the chest and squeeze firmly to provide containment and proprioceptive feedback.
+- 4-7-8 Breathing: Inhale for 4, hold for 7, exhale audibly for 8 to enforce a long exhalation that triggers relaxation.
+- Neck Rotation (The Basic Exercise): Interlace fingers behind the head, look to the right with eyes only (keeping head still) until you yawn, sigh, or swallow.
+- Externalizing the Critic: Visualize the inner critic as a separate character to reduce fusion with its message.
+- Values Sorting: Sort a list of values (e.g., Freedom, Intimacy) into ""Very Important,"" ""Important,"" and ""Not Important"" to prioritize focus.
+- Pros and Cons List: Analyze the consequences of tolerating distress versus acting on an impulsive urge.
+- Self-Soothe (5 Senses): Consciously comfort yourself using vision, hearing, smell, taste, and touch (e.g., lighting a scented candle).
+- Pushing Against the Wall: Push hands firmly against a wall to engage muscles and sense boundaries and strength.
+- Half-Smile: Relax the facial muscles and adopt a serene, slight smile to send feedback to the brain to regulate emotion.
+- ACCEPTS: Contributing: Do something kind for another person to shift focus away from self-centric distress.
+- Problem-Solving Worksheet: Break a problem into specific steps, brainstorm solutions, select one, and plan implementation.
+- The Survey Method: Ask trusted friends or colleagues how they would view or handle a specific situation to reality-test assumptions.
+- Pendulation: Shift attention back and forth between an area of distress and an area of neutral/resourceful sensation in the body.
+- ACCEPTS: Activities: Distract from distress by engaging in a neutral activity like cleaning or a hobby.
+- Ear Massage: Gently massage the cymba conchae (inner ear) to stimulate the auricular branch of the vagus nerve.
+- Clay Sculpting: Smash, smooth, or mold clay to express anger or reconstruct a sense of self.
+- Urge Surfing: Visualize the urge as a wave; watch it rise, peak, and crash without giving in to it.
+- Graded Task Assignment: Break a large, overwhelming task into micro-steps to overcome procrastination.
+- Thanking Your Mind: Respond to unhelpful thoughts with ""Thank you, Mind, for that interesting story"".
+- ACCEPTS: Thoughts: Engage the mind in a demanding task like counting backward from 100 by 7s.
+- Do Something Different: If a current solution isn't working, do anything else, no matter how strange, to break the pattern.
+- IMPROVE: One Thing in the Moment: Focus entire attention on a single task, blocking out the past and future.
+- Committed Action Goals: Set small, value-driven goals that are achievable regardless of your emotional state.
+- Decatastrophizing: Ask ""What is the worst that could happen, and if it did, how would I cope?"" to reduce the perceived magnitude of a feared event.
+- Physiological Sigh: Two quick inhales through the nose followed by one long exhale through the mouth to offload carbon dioxide and calm the system.
+- Response Prevention: Deliberately expose yourself to a trigger (e.g., dirt) and refuse to engage in the compulsive safety behavior (e.g., washing).
+- Relationship Questions: Ask ""What would your mother/partner/friend say they appreciate about you?"" to shift perspective.
+- TIPP: Paired Muscle Relaxation: Tense muscle groups while inhaling, and relax them deeply while exhaling.
+- Willing Hands: Turn palms upward and open the hands to embody an attitude of acceptance and non-aggression.
+- Three Good Things: List three things that went well today and why they happened to build self-efficacy.
+- TIPP: Intense Exercise: Engage in short bursts of high-intensity cardio (e.g., jumping jacks) to burn off acute emotional arousal.
+- Socratic Questioning: Use disciplined questioning to challenge assumptions, such as ""What is the evidence for this thought?"" and ""Is there an alternative explanation?"".
+- Balanced Predictions: Write down the worst-case scenario, the best-case scenario, and the most likely scenario to combat fortune-telling.
+- The Choice Point: Map out a situation to identify ""Towards moves"" (acting on values) versus ""Away moves"" (avoiding discomfort).
+- Titration: Process traumatic material in tiny, manageable ""drops"" rather than flooding the system.
+- Grounding (5-4-3-2-1): Identify 5 things you see, 4 feel, 3 hear, 2 smell, 1 taste to engage the prefrontal cortex.
+- IMPROVE: Vacation: Take a brief break from adulthood responsibilities (e.g., hide under the covers for 10 minutes).
+- Updating the Part: Inform a part that the client is no longer a child and has adult resources now.
+- Grounding: Physically connect feet to the floor and describe the physical environment to exit emotional escalation.
+- GIVE: Be Gentle, act Interested, Validate the other, use an Easy manner.
+- Daily Parts Check-in: Spend 5 minutes daily asking ""Who is here?"" and ""What do you need?"" to your internal system.
+- Retrieval/Unburdening: Visualize going into the past to retrieve an Exile from a traumatic memory and bringing them to a safe place.
+- Bedtime Buffer Zone: Create a 60-minute wind-down period with no screens and low light before bed.
+- ACCEPTS: Sensations: Hold an ice cube or squeeze a rubber ball to ground yourself with intense physical sensation.
+- 4-7-8 Breathing for Sleep: Use the 4-7-8 breathing pattern specifically to lower heart rate at bedtime.
+- The Path Exercise: Visualize walking down a path and asking parts to wait behind, allowing the Self to emerge.
+- DEAR MAN: Describe facts, Express feelings, Assert wishes, Reinforce others, Stay Mindful, Appear confident, Negotiate.
+- Random Acts of Kindness: Perform small, anonymous favors to boost oxytocin and social connection.
+- The Tree of Life: Draw a tree representing roots (history), trunk (skills), branches (hopes), and leaves (people) to consolidate identity.
+- Self-to-Part Dialogue: Journal a conversation between the ""Self"" and a specific part.
+- Opposite Action: Identify the urge associated with an emotion (e.g., fear = avoid) and do the exact opposite (e.g., approach).
+- IMPROVE: Imagery: Visualize a safe, relaxing scene or a ""mental vacation"" to escape current stress.
+- Parts Mapping: Draw a diagram of your internal system to visualize relationships and conflicts between parts.
+- Color Your Mood: Assign colors to emotions and fill a body outline to map where feelings live.
+- Humming or Chanting ""Om"": Hum or chant to create vibration in the vocal cords, which stimulates the vagus nerve.
+- The Best Possible Self: Write a narrative about a future where everything has gone as well as possible.
+- Behavioral Activation: Engage in a behavior before feeling the motivation to do so, recognizing that action often precedes emotion.
+- Resource Activation: Explicitly list external and internal resources available to solve the current crisis.
+- Passengers on the Bus: Imagine yourself as the driver of a bus and your thoughts as noisy passengers; keep driving your route regardless of what they shout.
+- Graded Exposure Hierarchy: List feared situations from least to most anxiety-provoking and systematically expose yourself to them.
+- ACCEPTS: Emotions: Generate a different emotion by watching a funny movie or listening to upbeat music.
+- Putting Thoughts on Trial: Act as a defense attorney and prosecutor for a distressing thought to objectively weigh the evidence before rendering a verdict.
+- Gargling: Gargle water aggressively to stimulate the pharyngeal muscles connected to the vagus nerve.
+- Physicalizing the Thought: Imagine the thought as an object in front of you; what is its shape, color, and size?.
+- Gratitude Journaling: Write down 3-5 things you are grateful for daily to retrain the brain's negativity bias.
+- Letter Writing: Write a letter to the problem (e.g., ""Dear Anxiety, I am breaking up with you..."").
+- The Room Technique: Visualize a part in a room and view it through a window to establish safe distance.
+- Mastery and Pleasure Ratings: Rate daily activities on a scale of 0–10 for ""Mastery"" (sense of accomplishment) and ""Pleasure"" to identify energy sources.
+- Circular Questioning: Ask A how they think B feels about C's behavior to reveal systemic patterns.
+- Cost Benefit Analysis: Systematically evaluate the costs and benefits of a target behavior vs. an alternative behavior.
+- Problem Solving: Identify the specific problem causing distress and implement a solution rather than regulating the emotion.
+- The 80th Birthday Speech: Imagine what you would want loved ones to say about your character at your 80th birthday to clarify values.
+- Radio Doom and Gloom: Treat the mind as a radio playing a background track of negativity while you focus on other tasks.
+- Mapping the Influence: Explore how the problem impacts the person's life and how the person impacts the problem's life.
+
+Generate 5 responses with their corresponding probabilities.
+Output EXACTLY 5 lines.
+Each line must be:
+<score>: <Technique name>
+Scores should be decimals between 0 and 1 with 2 decimal places and should roughly sum to 1.00.
+No extra text.","0.25: Diaphragmatic Breathing  
+0.20: Externalizing the Critic  
+0.18: The ""I'm Having the Thought That...""  
+0.17: Body Scanning  
+0.20: Pleasant Activity Scheduling","0.25: Diaphragmatic Breathing
+0.20: Externalizing the Critic
+0.18: The ""I'm Having the Thought That...""
+0.17: Body Scanning
+0.20: Pleasant Activity Scheduling","[[""Diaphragmatic Breathing"", 0.25], [""Externalizing the Critic"", 0.2], [""Pleasant Activity Scheduling"", 0.2], [""The \""I'm Having the Thought That...\"""", 0.18], [""Body Scanning"", 0.17]]"
+1,I'm a 24 year old Nigerian male who is gay and suffers with anxiety constantly.,technique_first,openai/gpt-oss-20b,0.01,Diaphragmatic Breathing,Rank the top 5 most appropriate techniques from the provided list based on the user's stated concerns.,"For this user: ""I'm a 24 year old Nigerian male who is gay and suffers with anxiety constantly.""
+
+Suggest a technique from this list:
+- Diaphragmatic Breathing: Breathe deeply into the belly (not the chest) to signal safety to the nervous system.
+- Interoceptive Exposure: Intentionally induce physical sensations of panic (e.g., spinning, running in place) to learn they are not dangerous.
+- IMPROVE: Encouragement: Cheerlead yourself with statements like ""I can stand this"" or ""This will pass"".
+- Externalization of Voices: Give the negative thought pattern a persona or name to separate it from your core identity.
+- Palm Cupping for Eyes: Place warm palms over closed eyes to reduce visual stimulation and soothe the nervous system.
+- Sleep Restriction: Temporarily limit time in bed to match actual sleep time (e.g., 6 hours) to build high sleep pressure and efficiency.
+- The ""I'm Having the Thought That..."": Rephrase ""I am a failure"" to ""I am having the thought that I am a failure"" to create distance.
+- Values Bullseye: Plot current behaviors on a target to see how close they are to the ""bullseye"" of your core values.
+- The ""Voo"" Sound: Inhale deeply and make a low, vibrating ""Voo"" sound on the exhale to stimulate the vagus nerve in the chest and belly.
+- Resonant Breathing: Breathe at a rate of roughly 5-6 breaths per minute to synchronize heart rate variability (HRV).
+- Body Scanning: Systematically sweep attention through the body to identify areas of tension or numbness.
+- The Miracle Question: Ask ""If a miracle solved your problem tonight while you slept, what would be the first thing you noticed differently tomorrow?"" to identify goals.
+- Music Playlist Therapy: Create playlists specifically designed to evoke or soothe specific emotional states.
+- Compliments: The therapist validates specific strengths and successes noticed during the session to reinforce agency.
+- Physicalizing the Emotion: Give an emotion a shape, color, weight, and texture to objectify and accept it.
+- Progressive Muscle Relaxation (PMR): Tense and release muscles from toe to head to physically induce relaxation in bed.
+- TIPP: Temperature: Submerge the face in cold water (or use an ice pack) for 30 seconds to trigger the Mammalian Dive Reflex and slow the heart rate.
+- Treating Thoughts as Guesses: Label predictions about the future as hypotheses rather than facts, requiring data collection to verify.
+- Cognitive Reframing: Consciously identify a negative interpretation of an event and actively generate a more neutral or positive alternative interpretation.
+- Separating Fact from Opinion: Systematically categorize internal dialogue into objective facts (observable data) and subjective opinions (interpretations).
+- Presupposing Change: Ask ""What is better since last time?"" rather than ""Is anything better?"", assuming positive change has occurred.
+- Pleasant Activity Scheduling: Intentionally schedule simple, high-reward activities to increase positive reinforcement in daily life.
+- Behavioral Experiments: Design a real-world test to verify a belief (e.g., ""If I speak up, people will laugh"") and record the actual outcome.
+- The ""Best Friend"" Technique: Ask, ""What would I say to my best friend if they were in this situation?"" to foster self-compassion and objectivity.
+- RESISTT: Reframe, Engage, Someone else, Intense sensations, Shut it out, Think neutral, Take a break.
+- The Magic Wand Question: Ask ""If a magic wand took away this pain, what would you be doing with your life?"" to identify neglected values.
+- Savoring: Intentionally prolong the enjoyment of a positive experience (e.g., eating a meal slowly).
+- Tactile Activation: Rub arms or legs vigorously to wake up the skin boundaries and return to the body.
+- Timeline Construction: Create a timeline of life events to gain perspective on the duration and transience of problems.
+- Clouds in the Sky: View thoughts as weather (clouds) and the self as the sky; the sky contains the weather but is not damaged by it.
+- The 6 Fs: Find, Focus, Flesh out, Feel toward, Befriend, and check for Fears to get to know a part.
+- Deconstruction of Truths: Examine societal ""truths"" (e.g., ""Men must be strong"") to see if they serve the client's narrative.
+- Savoring the Exhale: Focus specifically on the sensation of the air leaving the body to encourage the ""letting go"" response.
+- Accumulating Positive Emotions: Build a ""life worth living"" by engaging in positive events daily to buffer against stress.
+- Pursed Lip Breathing: Inhale through the nose and exhale slowly through pursed lips (like blowing a candle) to slow respiration.
+- Role Playing: Rehearse a difficult conversation or situation in a safe environment to build confidence and skills.
+- Smallest Difference: Identify the smallest possible change that would indicate progress.
+- Repetition (Milk, Milk, Milk): Repeat a difficult word or thought until it loses its meaning and becomes just a sound.
+- Imaginal Exposure: Vividly visualize a feared scenario in the present tense to habituate to the anxiety it provokes.
+- PLEASE Skill: Treat Physical illness, balance Eating, avoid Altering drugs, Sleep well, Exercise to reduce vulnerability.
+- Asking ""What are you afraid would happen?"": Ask a protective part what it fears would happen if it stopped doing its job.
+- Unblending: Ask a part to ""step back"" or ""separate"" from the Self so it can be observed rather than being the observer.
+- Checking for Polarization: Identify two parts in conflict (e.g., one wants to work, one wants to sleep) and mediate between them.
+- Yawning: Intentionally yawn repeatedly to activate the vagus nerve and cool the brain.
+- Weighted Blanket: Use deep pressure stimulation to increase serotonin and decrease cortisol.
+- Labeling Thoughts: Categorize thoughts as they arise (e.g., ""Thinking,"" ""Judging,"" ""Planning"") to reduce engagement.
+- Walking in Nature (Forest Bathing): Walk slowly in a green environment to lower cortisol and engage soft fascination.
+- Unique Outcomes: Highlight moments that contradict the ""problem-saturated"" story (e.g., ""You stood up for yourself there?"").
+- Naming the Story: Identify repetitive thought patterns (e.g., ""Ah, here is the 'I'm not good enough' story again"").
+- Direct Access: The therapist talks directly to the part (e.g., ""Can I speak to the Anger?"") rather than the client talking about the part.
+- Expansion: Breathe into and make room for a difficult feeling in the body, rather than contracting around it.
+- The Struggle Switch: Visualize anxiety as a switch; when ""on,"" you struggle and amplify it. Turn the switch ""off"" by dropping the struggle, even if anxiety remains.
+- Alternate Nostril Breathing: Breathe in through one nostril, hold, and breathe out through the other to balance the hemispheres.
+- Leaves on a Stream: Visualize thoughts as leaves floating down a stream; watch them pass without picking them up.
+- Heel Drops: Rise on toes and drop heels firmly to the floor to discharge tension and ground through the skeletal system.
+- Continuum Technique: Place a feared characteristic (e.g., ""incompetence"") on a continuum from 0-100% to see where one truly falls, avoiding binary labeling.
+- Cognitive Shuffling: Visualize random, unrelated objects (e.g., ""cow,"" ""bread,"" ""star"") to interrupt ruminative thought loops and induce sleep onset.
+- Mandala Drawing: Draw and color inside a circle to induce a meditative state and contain chaotic emotions.
+- ABC Functional Analysis: Analyze the Antecedent (trigger), Behavior (reaction), and Consequence (outcome) to understand the function of a habit.
+- Replacing ""What If"" with ""Then What"": Shift from ruminating on a potential disaster to planning specific coping steps if the event actually occurred.
+- Mindfulness of Current Emotions: Observe the emotion as a wave, noting its rise and fall without blocking or amplifying it.
+- Defining Terms: Ask for specific definitions of labeled terms (e.g., ""What exactly does it mean to be a 'failure'?"") to expose the vagueness of self-criticism.
+- Identifying Cognitive Distortions: Label thoughts with specific distortion names (e.g., ""This is all-or-nothing thinking"") to reduce their subjective authority.
+- Box Breathing: Inhale 4, Hold 4, Exhale 4, Hold 4 to regulate the autonomic nervous system.
+- The Unwelcome Party Guest: Treat anxiety like an obnoxious guest at a party you are hosting; you don't have to like them, but you don't have to kick them out to enjoy the party.
+- The Tombstone Exercise: Write the inscription you would want on your tombstone to distill your life's purpose.
+- Externalizing the Problem: Refer to the problem as an entity (e.g., ""The Depression"" or ""The Anger"") rather than a trait (""I am angry"").
+- Clean vs. Dirty Discomfort: Distinguish between ""clean"" pain (natural emotion) and ""dirty"" pain (suffering caused by struggling against the emotion).
+- STOP Skill: Stop (freeze), Take a step back, Observe the situation, and Proceed mindfully.
+- Cost-Benefit Analysis of Worry: List the advantages and disadvantages of holding onto a specific worry to determine if it serves a protective function.
+- Cognitive Pie Chart: Create a pie chart to allocate responsibility for an event, reducing the tendency to assume 100% personal blame.
+- IMPROVE: Prayer: Open the heart to a supreme being or the universe to ask for strength.
+- The ""Worry Chair"": Designate a specific chair (not the bed) for worrying; if worries arise in bed, move to the chair.
+- FAST: Be Fair, No Apologies (for having needs), Stick to values, Be Truthful.
+- The ""Not-Knowing"" Stance: The therapist adopts a posture of curiosity rather than expertise to empower the client.
+- Future Pull: Vividly imagine a preferred future to generate present-moment motivation.
+- The Self-Hug: Wrap arms around the chest and squeeze firmly to provide containment and proprioceptive feedback.
+- 4-7-8 Breathing: Inhale for 4, hold for 7, exhale audibly for 8 to enforce a long exhalation that triggers relaxation.
+- Neck Rotation (The Basic Exercise): Interlace fingers behind the head, look to the right with eyes only (keeping head still) until you yawn, sigh, or swallow.
+- Externalizing the Critic: Visualize the inner critic as a separate character to reduce fusion with its message.
+- Values Sorting: Sort a list of values (e.g., Freedom, Intimacy) into ""Very Important,"" ""Important,"" and ""Not Important"" to prioritize focus.
+- Pros and Cons List: Analyze the consequences of tolerating distress versus acting on an impulsive urge.
+- Self-Soothe (5 Senses): Consciously comfort yourself using vision, hearing, smell, taste, and touch (e.g., lighting a scented candle).
+- Pushing Against the Wall: Push hands firmly against a wall to engage muscles and sense boundaries and strength.
+- Half-Smile: Relax the facial muscles and adopt a serene, slight smile to send feedback to the brain to regulate emotion.
+- ACCEPTS: Contributing: Do something kind for another person to shift focus away from self-centric distress.
+- Problem-Solving Worksheet: Break a problem into specific steps, brainstorm solutions, select one, and plan implementation.
+- The Survey Method: Ask trusted friends or colleagues how they would view or handle a specific situation to reality-test assumptions.
+- Pendulation: Shift attention back and forth between an area of distress and an area of neutral/resourceful sensation in the body.
+- ACCEPTS: Activities: Distract from distress by engaging in a neutral activity like cleaning or a hobby.
+- Ear Massage: Gently massage the cymba conchae (inner ear) to stimulate the auricular branch of the vagus nerve.
+- Clay Sculpting: Smash, smooth, or mold clay to express anger or reconstruct a sense of self.
+- Urge Surfing: Visualize the urge as a wave; watch it rise, peak, and crash without giving in to it.
+- Graded Task Assignment: Break a large, overwhelming task into micro-steps to overcome procrastination.
+- Thanking Your Mind: Respond to unhelpful thoughts with ""Thank you, Mind, for that interesting story"".
+- ACCEPTS: Thoughts: Engage the mind in a demanding task like counting backward from 100 by 7s.
+- Do Something Different: If a current solution isn't working, do anything else, no matter how strange, to break the pattern.
+- IMPROVE: One Thing in the Moment: Focus entire attention on a single task, blocking out the past and future.
+- Committed Action Goals: Set small, value-driven goals that are achievable regardless of your emotional state.
+- Decatastrophizing: Ask ""What is the worst that could happen, and if it did, how would I cope?"" to reduce the perceived magnitude of a feared event.
+- Physiological Sigh: Two quick inhales through the nose followed by one long exhale through the mouth to offload carbon dioxide and calm the system.
+- Response Prevention: Deliberately expose yourself to a trigger (e.g., dirt) and refuse to engage in the compulsive safety behavior (e.g., washing).
+- Relationship Questions: Ask ""What would your mother/partner/friend say they appreciate about you?"" to shift perspective.
+- TIPP: Paired Muscle Relaxation: Tense muscle groups while inhaling, and relax them deeply while exhaling.
+- Willing Hands: Turn palms upward and open the hands to embody an attitude of acceptance and non-aggression.
+- Three Good Things: List three things that went well today and why they happened to build self-efficacy.
+- TIPP: Intense Exercise: Engage in short bursts of high-intensity cardio (e.g., jumping jacks) to burn off acute emotional arousal.
+- Socratic Questioning: Use disciplined questioning to challenge assumptions, such as ""What is the evidence for this thought?"" and ""Is there an alternative explanation?"".
+- Balanced Predictions: Write down the worst-case scenario, the best-case scenario, and the most likely scenario to combat fortune-telling.
+- The Choice Point: Map out a situation to identify ""Towards moves"" (acting on values) versus ""Away moves"" (avoiding discomfort).
+- Titration: Process traumatic material in tiny, manageable ""drops"" rather than flooding the system.
+- Grounding (5-4-3-2-1): Identify 5 things you see, 4 feel, 3 hear, 2 smell, 1 taste to engage the prefrontal cortex.
+- IMPROVE: Vacation: Take a brief break from adulthood responsibilities (e.g., hide under the covers for 10 minutes).
+- Updating the Part: Inform a part that the client is no longer a child and has adult resources now.
+- Grounding: Physically connect feet to the floor and describe the physical environment to exit emotional escalation.
+- GIVE: Be Gentle, act Interested, Validate the other, use an Easy manner.
+- Daily Parts Check-in: Spend 5 minutes daily asking ""Who is here?"" and ""What do you need?"" to your internal system.
+- Retrieval/Unburdening: Visualize going into the past to retrieve an Exile from a traumatic memory and bringing them to a safe place.
+- Bedtime Buffer Zone: Create a 60-minute wind-down period with no screens and low light before bed.
+- ACCEPTS: Sensations: Hold an ice cube or squeeze a rubber ball to ground yourself with intense physical sensation.
+- 4-7-8 Breathing for Sleep: Use the 4-7-8 breathing pattern specifically to lower heart rate at bedtime.
+- The Path Exercise: Visualize walking down a path and asking parts to wait behind, allowing the Self to emerge.
+- DEAR MAN: Describe facts, Express feelings, Assert wishes, Reinforce others, Stay Mindful, Appear confident, Negotiate.
+- Random Acts of Kindness: Perform small, anonymous favors to boost oxytocin and social connection.
+- The Tree of Life: Draw a tree representing roots (history), trunk (skills), branches (hopes), and leaves (people) to consolidate identity.
+- Self-to-Part Dialogue: Journal a conversation between the ""Self"" and a specific part.
+- Opposite Action: Identify the urge associated with an emotion (e.g., fear = avoid) and do the exact opposite (e.g., approach).
+- IMPROVE: Imagery: Visualize a safe, relaxing scene or a ""mental vacation"" to escape current stress.
+- Parts Mapping: Draw a diagram of your internal system to visualize relationships and conflicts between parts.
+- Color Your Mood: Assign colors to emotions and fill a body outline to map where feelings live.
+- Humming or Chanting ""Om"": Hum or chant to create vibration in the vocal cords, which stimulates the vagus nerve.
+- The Best Possible Self: Write a narrative about a future where everything has gone as well as possible.
+- Behavioral Activation: Engage in a behavior before feeling the motivation to do so, recognizing that action often precedes emotion.
+- Resource Activation: Explicitly list external and internal resources available to solve the current crisis.
+- Passengers on the Bus: Imagine yourself as the driver of a bus and your thoughts as noisy passengers; keep driving your route regardless of what they shout.
+- Graded Exposure Hierarchy: List feared situations from least to most anxiety-provoking and systematically expose yourself to them.
+- ACCEPTS: Emotions: Generate a different emotion by watching a funny movie or listening to upbeat music.
+- Putting Thoughts on Trial: Act as a defense attorney and prosecutor for a distressing thought to objectively weigh the evidence before rendering a verdict.
+- Gargling: Gargle water aggressively to stimulate the pharyngeal muscles connected to the vagus nerve.
+- Physicalizing the Thought: Imagine the thought as an object in front of you; what is its shape, color, and size?.
+- Gratitude Journaling: Write down 3-5 things you are grateful for daily to retrain the brain's negativity bias.
+- Letter Writing: Write a letter to the problem (e.g., ""Dear Anxiety, I am breaking up with you..."").
+- The Room Technique: Visualize a part in a room and view it through a window to establish safe distance.
+- Mastery and Pleasure Ratings: Rate daily activities on a scale of 0–10 for ""Mastery"" (sense of accomplishment) and ""Pleasure"" to identify energy sources.
+- Circular Questioning: Ask A how they think B feels about C's behavior to reveal systemic patterns.
+- Cost Benefit Analysis: Systematically evaluate the costs and benefits of a target behavior vs. an alternative behavior.
+- Problem Solving: Identify the specific problem causing distress and implement a solution rather than regulating the emotion.
+- The 80th Birthday Speech: Imagine what you would want loved ones to say about your character at your 80th birthday to clarify values.
+- Radio Doom and Gloom: Treat the mind as a radio playing a background track of negativity while you focus on other tasks.
+- Mapping the Influence: Explore how the problem impacts the person's life and how the person impacts the problem's life.
+
+Generate 5 responses with their corresponding probabilities.
+Output EXACTLY 5 lines.
+Each line must be:
+<Technique name>: <score>
+Scores should be decimals between 0 and 1 with 2 decimal places and should roughly sum to 1.00.
+No extra text.","Diaphragmatic Breathing: 0.25  
+Body Scanning: 0.20  
+Externalizing the Voices: 0.18  
+Cognitive Reframing: 0.17  
+Pleasant Activity Scheduling: 0.20","Diaphragmatic Breathing: 0.25
+Body Scanning: 0.20
+Externalizing the Voices: 0.18
+Cognitive Reframing: 0.17
+Pleasant Activity Scheduling: 0.20","[[""Diaphragmatic Breathing"", 0.25], [""Body Scanning"", 0.2], [""Pleasant Activity Scheduling"", 0.2], [""Externalizing the Voices"", 0.18], [""Cognitive Reframing"", 0.17]]"

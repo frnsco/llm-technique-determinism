@@ -1,0 +1,9 @@
+test_number,prompt_technique,technique_picked,raw_top5
+1,baseline,Cognitive Reframing,{}
+1,score_first,,{}
+1,technique_first,,{}
+1,baseline,4-7-8 Breathing for Sleep,{}
+1,score_first,,{}
+1,technique_first,,{}
+1,baseline,Behavioral Activation,{}
+1,score_first,,{}

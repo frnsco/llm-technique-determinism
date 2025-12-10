@@ -31,7 +31,7 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
-          python src/run_eval_debug.py --num_tests 1 --sleep 0
+          python src/run_eval_debug.py --num_tests 25 --sleep 0
 
       - name: Upload results artifact
         uses: actions/upload-artifact@v4

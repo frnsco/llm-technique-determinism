@@ -10,7 +10,7 @@ from typing import List, Dict, Tuple
 from groq import Groq, RateLimitError
 
 # Change this to your Qwen model name when needed
-MODEL = "qwen/qwen3-32b"
+MODEL = "llama-3.3-70b-versatile"
 TEMPERATURE = 0.01
 
 # --- Rate limit awareness ---

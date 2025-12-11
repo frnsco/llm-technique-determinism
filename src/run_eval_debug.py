@@ -10,7 +10,7 @@ from typing import List, Dict, Tuple
 from groq import Groq, RateLimitError
 
 # Change this to your Qwen model name when needed
-MODEL = "llama-3.3-70b-versatile"
+MODEL = "openai/gpt-oss-120b"
 TEMPERATURE = 0.01
 
 # --- Rate limit awareness ---
